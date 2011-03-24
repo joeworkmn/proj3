@@ -4,6 +4,7 @@ class UsersController < ApplicationController
   end
   
   def new
+    
   end
   
   def create
@@ -63,6 +64,19 @@ class UsersController < ApplicationController
   
   def resetPassResult
     @result = "Password has been changed"
+    @first_name = params[:first_name] #TEST for chart
+    @last_name = params[:last_name]   #TEST for chart
+    
   end
 
+  def chart
+    conn = ActiveRecord::Base.connection
+    first_name = conn.select_values("select first_name from users")
+    last_name = conn.select_values("select last_name from users")
+    combined = first_name + last_name
+    @x = User.all
+    myarray = ['hi','bye']
+    #redirect_to "http://localhost/chart.html", :fname_lname => :combine
+    redirect_to :controller => "users", :action => "resetPassResult", :first_name => myarray
+  end
 end

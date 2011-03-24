@@ -4,4 +4,5 @@
   <%= f.label "Password: " %><br /><%= f.password_field :password %><br />
   <%= f.submit "Submit" %><br /><br /><br />
 <% end %>
-<%=link_to "View Public Page", :controller => "user_suggestions", :action => "index"%>
+<%=link_to "View Public Page", :controller => "user_suggestions", :action => "index"%><br />
+<%= link_to "View Chart", :controller => "users", :action => "chart" %>

@@ -1,14 +1,17 @@
 class UserSuggestionsController < ApplicationController
   def index
     sortBy = params[:sortBy]
-    if sortBy == "division"
-      @usersuggestions = UserSuggestion.order("division ASC")
-    elsif sortBy == "department"
-      @usersuggestions = UserSuggestion.order("department ASC")
-    elsif sortBy == "name"
-      @usersuggestions = UserSuggestion.order("last_name ASC")
-    elsif sortBy == "mod"
-      @usersuggestions = UserSuggestion.order("updated_at ASC")
+    if sortBy != nil
+      @usersuggestions = UserSuggestion.order("" + sortBy + " ASC")
+    
+    #if sortBy == "division"
+    #  @usersuggestions = UserSuggestion.order("division ASC")
+    #elsif sortBy == "department"
+    #  @usersuggestions = UserSuggestion.order("department ASC")
+    #elsif sortBy == "name"
+    #  @usersuggestions = UserSuggestion.order("last_name ASC")
+    #elsif sortBy == "mod"
+    #  @usersuggestions = UserSuggestion.order("updated_at ASC")
     else
       @usersuggestions = UserSuggestion.all
       respond_to do |format|

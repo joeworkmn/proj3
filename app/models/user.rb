@@ -16,4 +16,8 @@
 #app/models/user.rb
 class User < ActiveRecord::Base
   attr_accessible :first_name, :last_name, :username, :division, :department
+  
+  def makeOption
+    first_name + " " + last_name
+  end
 end

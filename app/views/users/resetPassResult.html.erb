@@ -1,3 +1,8 @@
+  <% @first_name.each do |name| %>
+    <%= name %><br />
+  <% end %>  
+
+ 
 <% if cookies.signed[:admin] %>
   <h2><%= @result %></h2><br />
   <% if @result == "Password has been changed" %>

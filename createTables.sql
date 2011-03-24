@@ -14,7 +14,7 @@ create table users(
   last_name text,
   username text unique,
   password text,
-  enc_pass text,
+  enc_pass text not null,
   salt text,
   division text,
   department text

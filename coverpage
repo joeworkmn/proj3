@@ -54,13 +54,16 @@ Features:
 
   The login page works correctly
 
-  The new submissions page works correctly and associates the submission with the correct user id
+  The new submissions page works correctly and associates the submission with the 
+      correct user id
 
-  The page to select existing submissions for editing, and the page to edit the submission works correctly
-      and can be updated correctly
+  The page to select existing submissions for editing, and the page to edit the 
+      submission works correctly and can be updated correctly
 
-  The publicly viewable suggestions page shows all the suggestions in the correct order and the right columns
+  The publicly viewable suggestions page shows all the suggestions in the correct 
+      order and the right columns
   
-  The extra credit pages to order the submissions by division,department,name,creation date,modification date work correctly
+  The extra credit pages to order the submissions by division,department,name,
+      creation date,modification date work correctly
 
 

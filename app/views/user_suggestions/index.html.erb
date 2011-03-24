@@ -17,11 +17,11 @@
 <%= link_to "Order by department", :controller => "user_suggestions", :action => "index", 
     :sortBy => "department" %><br />
 <%= link_to "Order by name", :controller => "user_suggestions", :action => "index", 
-    :sortBy => "name" %><br />
+    :sortBy => "last_name" %><br />
 <%= link_to "Order by creation date", :controller => "user_suggestions", 
     :action => "index" %><br />
 <%= link_to "Order by modification date", :controller => "user_suggestions",
-    :action => "index", :sortBy => "mod" %><br />
+    :action => "index", :sortBy => "updated_at" %><br />
 <% if cookies.signed[:authenticated] %>
   <%= link_to "Main", :controller => "pages", :action => "continue" %>
 <% end %>

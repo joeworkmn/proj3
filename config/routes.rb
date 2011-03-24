@@ -17,8 +17,8 @@ Proj2::Application.routes.draw do
   match "users" => "users#index"
   match 'users/resetPass' => 'users#resetPass'
   match 'users/updatePass' => 'users#updatePass'
-  #match 'users/updatePassSuccess' => 'users#updatePassSuccess'
   match 'users/resetPassResult' => 'users#resetPassResult'
+  match 'users/chart' => 'users#chart'
   
   match 'suggestions/update' => 'suggestions#update'
   match 'user_suggestions' => 'user_suggestions#index'
@@ -28,17 +28,8 @@ Proj2::Application.routes.draw do
   match 'user_suggestions/edit' => 'user_suggestions#edit'
   match 'user_suggestions/divChairView/' => 'user_suggestions#divChairView'
   match 'user_suggestions/depView/' => 'user_suggestions#depView'
-  #match 'user_suggestions/proj2.html' => 'user_suggestions#index'  #TEST FOR FLEX
-  match '/history/history.css' => 'user_suggestions#suggestion'
-  match '/history/history.js' => 'user_suggestions#suggestion'
-  match '/swfobject.js' => 'user_suggestions#suggestion'
-  match 'user_suggestions/indexSortByDiv' => 'user_suggestions#indexSortByDiv'
-  match 'user_suggestions/indexSortByDep' => 'user_suggestions#indexSortByDep'
-  match 'user_suggestions/indexSortByName' => 'user_suggestions#indexSortByName'
-  match 'user_suggestions/indexSortByDiv' => 'user_suggestions#indexSortByDiv'
-  match 'user_suggestions/indexSortByCreate' => 'user_suggestions#indexSortByCreate'
-  match 'user_suggestions/indexSortByMod' => 'user_suggestions#indexSortByMod'
-  #match 'user_suggestions/suggestion.html' => 'user_suggestions#suggestion'  #TEST FOR FLEX
+    
+    
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
