@@ -71,6 +71,18 @@ drop view if exists sugg_survey_view cascade;
 create view sugg_survey_view as select * from user_suggestion_view, surveys where
   user_suggestion_view.suggestionid = surveys.survey;
   
--- create view for choosing a survey to take
+-- create initial view to be joined with user_survey_view
+drop view if exists part1 cascade;
+create view part1 as select users.id as uid, users.first_name, users.last_name, users.division, 
+  users.department, surveys.id as sid, surveys.survey, surveys.strongly_agree, surveys.agree, 
+  surveys.neutral, surveys.disagree, surveys.strongly_disagree  from users join 
+  users_survey on users.id = users_survey.userid join surveys on users_survey.survid = surveys.id;
+
+--create view to show what surveys a user has taken
 drop view if exists user_survey_view cascade;
-create view user_suvey_view as select *
+create view user_survey_view as select * from part1, suggestions where part1.survey = suggestions.id;
+
+
+--select part1.uid, part1.sid, part1.survey, suggestions.id as suggid, 
+--  suggestions.suggestion from part1 join suggestions on part1.survey = suggestions.id;
+
