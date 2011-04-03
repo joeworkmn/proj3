@@ -27,7 +27,7 @@ create table suggestions(
   suggestion text unique,
   created_at timestamp,
   updated_at timestamp,
-  userid integer references users(id)
+  user_id integer references users(id)
 );
 
 --drop table if exists user_suggestions cascade;
@@ -44,24 +44,33 @@ create table surveys(
   disagree integer default 0, strongly_disagree integer default 0
 );
 
--- create view for web app
---drop view if exists user_suggestion_view cascade;
---create view user_suggestion_view as 
---  select users.id as userid,users.first_name,users.last_name,users.username,users.password,users.enc_pass,
---  users.salt,users.division,users.department,suggestions.id as suggestionid,suggestions.suggestion,suggestions.created_at,
---  suggestions.updated_at 
---  from users join user_suggestions on users.id=user_suggestions.user_id
---  join suggestions on user_suggestions.suggestion_id=suggestions.id;
+drop table if exists users_survey cascade;
+create table users_survey(
+  userid integer references users(id),
+  survid integer references surveys(id)
+);
+
+--create view for web app
+drop view if exists user_suggestion_view cascade;
+create view user_suggestion_view as 
+  select users.id as userid,users.first_name,users.last_name,users.username,users.password,users.enc_pass,
+  users.salt,users.division,users.department,suggestions.id as suggestionid,suggestions.suggestion,suggestions.created_at,
+  suggestions.updated_at,suggestions.user_id 
+  from users join suggestions on users.id = suggestions.user_id;
   
 -- create view for sql script
 drop view if exists user_suggestion_view_init cascade;
 create view user_suggestion_view_init as 
   select users.id as userid,users.first_name,users.last_name,users.username,users.password,users.enc_pass,
   users.salt,users.division,users.department,suggestions.id as suggestionid,suggestions.suggestion,suggestions.created_at,
-  suggestions.updated_at, suggestions.userid
-  from users join suggestions on users.id = suggestions.userid
+  suggestions.updated_at, suggestions.user_id
+  from users join suggestions on users.id = suggestions.user_id;
   
--- create view for selecting a survey
+-- create view for selecting a survey create
 drop view if exists sugg_survey_view cascade;
 create view sugg_survey_view as select * from user_suggestion_view, surveys where
   user_suggestion_view.suggestionid = surveys.survey;
+  
+-- create view for choosing a survey to take
+drop view if exists user_survey_view cascade;
+create view user_suvey_view as select *

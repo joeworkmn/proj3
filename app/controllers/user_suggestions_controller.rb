@@ -27,7 +27,7 @@ class UserSuggestionsController < ApplicationController
     suggestion = suggestion.gsub(/'/,"''")
     id = cookies.signed[:user_id]
     conn = ActiveRecord::Base.connection
-    sql = "insert into user_suggestion_view (userid,suggestion) values (" + id.to_s +
+    sql = "insert into user_suggestion_view (user_id,suggestion) values (" + id.to_s +
       ",'" + suggestion + "')"
     conn.insert(sql)
     redirect_to :controller => "user_suggestions", :action => "index"
