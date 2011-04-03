@@ -69,3 +69,21 @@ create or replace function insertSurvey(_survey integer)
   end;
   $func$
   language 'plpgsql';
+  
+-- create function to insert into users_survey or return false if already exists (NOT WORKING)
+create or replace function insertUserSurvey(_userid integer, _survid integer)
+  returns integer as
+  $func$
+  declare
+    search integer;
+  begin
+    select into search * from user_survey_view where uid = _userid and survid = _survid;
+    if found then
+      return 1;
+    else
+      execute 'insert into users_survey(userid, survid) values (' || _userid || ',' || _survid || ')';
+      return 2;
+    end if;
+  end;
+  $func$
+  language 'plpgsql';

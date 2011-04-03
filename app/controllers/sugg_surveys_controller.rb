@@ -2,8 +2,23 @@ class SuggSurveysController < ApplicationController
   def chooseSurvey
     division = cookies.signed[:user_div]
     userid = cookies.signed[:user_id]
-    @surveys = SuggSurvey.find_all_by_division(division)
-    
+    @notice = params[:notice]
+    #@surveys = SuggSurvey.find_all_by_division(division)
+    @surveysAll = SuggSurvey.find_all_by_division(division)
+    @surveysTaken = UserSurvey.find_all_by_uid(userid)
+    @surveysAll.each do |a|
+      @surveysTaken.each do |t|
+        if a.id == t.survid and t.uid == userid
+          a.suggestion = a.suggestion + " (TAKEN)"
+        end
+      end  
+    end
+    @surveysRest = [[]]
+    @surveysAll.each do |a|
+      if a.suggestion != ""
+        @surveysRest = a
+      end 
+    end
   end
   
   def createSurvey
@@ -28,6 +43,15 @@ class SuggSurveysController < ApplicationController
   
   def takeSurvey
     id = params[:id]
+    userid = cookies.signed[:user_id]
+    conn = ActiveRecord::Base.connection
+    survid = conn.select_value("select id from surveys where survey = " + id.first.to_s + "").to_i
+    target = conn.select_value("select survid from users_survey where userid = " + userid.to_s + 
+      " and survid = " + survid.to_s + "").to_i
+    if target > 0
+      @notice = "You have already taken this survey"
+      redirect_to :action => "chooseSurvey", :notice => @notice
+    end
     @survey = SuggSurvey.find_by_survey(id)
   end
   
@@ -41,11 +65,15 @@ class SuggSurveysController < ApplicationController
     count = conn.select_value("select " + rating.to_s + " from surveys where
       survey = " + survey.to_s + "").to_i
     count = count + 1
-    conn.update("update surveys set " + rating.to_s + " = " + count.to_s + " where
-      survey = " + survey.to_s + "")
-    conn.insert("insert into users_survey(userid, survid) values('" + userid.to_s +
-      "','" + survid.to_s + "')")
-    redirect_to :action => "index"
+    result = conn.select_value("select insertUserSurvey(" + userid.to_s + "," + survid.to_s + ")").to_i
+    if result == 1
+      notice = "You have already taken that survey"
+      redirect_to :action => "chooseSurvey", :notice => notice
+    else
+      conn.update("update surveys set " + rating.to_s + " = " + count.to_s + " where
+        survey = " + survey.to_s + "")
+      redirect_to :action => "index"
+    end
   end
 
 end

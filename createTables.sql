@@ -74,7 +74,8 @@ create view sugg_survey_view as select * from user_suggestion_view, surveys wher
 -- create initial view to be joined with user_survey_view
 drop view if exists part1 cascade;
 create view part1 as select users.id as uid, users.first_name, users.last_name, users.division, 
-  users.department, surveys.id as sid, surveys.survey, surveys.strongly_agree, surveys.agree, 
+  users.department, users_survey.userid as survey_uid, users_survey.survid, 
+  surveys.id as sid, surveys.survey, surveys.strongly_agree, surveys.agree, 
   surveys.neutral, surveys.disagree, surveys.strongly_disagree  from users join 
   users_survey on users.id = users_survey.userid join surveys on users_survey.survid = surveys.id;
 
