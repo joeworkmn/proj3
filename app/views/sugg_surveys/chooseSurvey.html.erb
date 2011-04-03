@@ -1,0 +1,9 @@
+  <% if cookies.signed[:authenticated] %>
+    <h2>Choose a Survey</h2>
+    <%= form_for :id, :url => {:controller => "sugg_surveys", :action => "takeSurvey"} do |f| %>
+      <%= f.collection_select @survey, @surveys, :suggestionid, :suggestion,
+      options = {:prompt => "Choose a survey to take"}, :class => "suggestion" %><br />
+      <%= f.submit "Submit" %>
+    <% end %>
+  <% end %>
+

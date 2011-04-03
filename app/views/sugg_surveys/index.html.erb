@@ -1,0 +1,21 @@
+<% if cookies.signed[:authenticated] %>
+<h2><%= cookies.signed[:user_div] %> Division's Surveys</h2>
+<table border="1">
+  <tr>
+    <th>Suggestion</th><th>Strongly Agree</th><th>Agree</th><th>Neutral</th>
+    <th>Disagree</th><th>Strongly Disagree</th>
+  </tr>
+  <% @surveys.each do |s| %>
+    <tr>
+      <td><%= s.suggestion %></td><td><%= s.strongly_agree %><td><%= s.agree %></td>
+      <td><%= s.neutral %></td><td><%= s.disagree %><td><%= s.strongly_disagree %></td>
+    </tr>
+  <% end %>
+</table><br />
+<%= link_to "Main", :controller => "pages", :action => "continue" %><br />
+<%= link_to "Take a Survey", :action => "chooseSurvey" %><br />
+<% if cookies.signed[:divChair] %>
+  <%= link_to "Create a Survey", :controller => "user_suggestions", 
+      :action => "chooseSuggSurvey" %>
+<% end %>
+<% end %>
