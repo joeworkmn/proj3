@@ -26,14 +26,15 @@ create table suggestions(
   id integer not null primary key default nextval('suggestion_id_seq'),
   suggestion text unique,
   created_at timestamp,
-  updated_at timestamp
+  updated_at timestamp,
+  userid integer references users(id)
 );
 
-drop table if exists user_suggestions cascade;
-create table user_suggestions(
-  user_id integer references users(id),
-  suggestion_id integer references suggestions(id)
-);
+--drop table if exists user_suggestions cascade;
+--create table user_suggestions(
+--  user_id integer references users(id),
+--  suggestion_id integer references suggestions(id)
+--);
 
 drop table if exists surveys cascade;
 create table surveys(
@@ -44,22 +45,21 @@ create table surveys(
 );
 
 -- create view for web app
-drop view if exists user_suggestion_view cascade;
-create view user_suggestion_view as 
-  select users.id as userid,users.first_name,users.last_name,users.username,users.password,users.enc_pass,
-  users.salt,users.division,users.department,suggestions.id as suggestionid,suggestions.suggestion,suggestions.created_at,
-  suggestions.updated_at 
-  from users join user_suggestions on users.id=user_suggestions.user_id
-  join suggestions on user_suggestions.suggestion_id=suggestions.id;
+--drop view if exists user_suggestion_view cascade;
+--create view user_suggestion_view as 
+--  select users.id as userid,users.first_name,users.last_name,users.username,users.password,users.enc_pass,
+--  users.salt,users.division,users.department,suggestions.id as suggestionid,suggestions.suggestion,suggestions.created_at,
+--  suggestions.updated_at 
+--  from users join user_suggestions on users.id=user_suggestions.user_id
+--  join suggestions on user_suggestions.suggestion_id=suggestions.id;
   
 -- create view for sql script
 drop view if exists user_suggestion_view_init cascade;
 create view user_suggestion_view_init as 
   select users.id as userid,users.first_name,users.last_name,users.username,users.password,users.enc_pass,
   users.salt,users.division,users.department,suggestions.id as suggestionid,suggestions.suggestion,suggestions.created_at,
-  suggestions.updated_at 
-  from users join user_suggestions on users.id=user_suggestions.user_id
-  join suggestions on user_suggestions.suggestion_id=suggestions.id;
+  suggestions.updated_at, suggestions.userid
+  from users join suggestions on users.id = suggestions.userid
   
 -- create view for selecting a survey
 drop view if exists sugg_survey_view cascade;
