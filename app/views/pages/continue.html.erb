@@ -16,7 +16,10 @@
     <%= link_to "Make Suggestion", :controller => "user_suggestions", :action => "new" %>
         <br />
     <%= link_to "Edit Division Suggestions", :controller => "user_suggestions",
-        :action => "chooseSuggestion" %>
+        :action => "chooseSuggestion" %><br />
+    <%= link_to "Create a Survey", :controller => "user_suggestions", 
+        :action => "chooseSuggSurvey" %><br />
+    <%= link_to "Take a Survey", :controller => "sugg_surveys", :action => "chooseSurvey" %>
          
   <% else %>
     <%= link_to "View Division Suggestions", :controller => 
@@ -26,6 +29,7 @@
     <%= link_to "Make Suggestion", :controller => "user_suggestions", 
         :action => "new" %><br />
     <%= link_to "Edit Your Suggestions", :controller => "user_suggestions", 
-        :action => "chooseSuggestion" %>
+        :action => "chooseSuggestion" %><br />
+    <%= link_to "Take a Survey", :controller => "sugg_surveys", :action => "chooseSurvey" %>
   <% end %>
 <% end %>

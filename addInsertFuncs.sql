@@ -87,3 +87,24 @@ create or replace function insertUserSuggestionInit(_fname text, _lname text,
 create or replace rule user_suggestion_ins_init as on insert to user_suggestion_view_init
   do instead select insertUserSuggestionInit(new.first_name, new.last_name, new.username,
   new.password, new.division, new.department, new.suggestion);
+  
+-- create function for inserting into surveys
+create or replace function insertSurvey(_survey integer)
+  returns integer as
+  $func$
+  declare
+    survid record;
+  begin
+    select * from surveys where surveys.survey = _survey;
+    if found then
+      return -1;
+      --survid := -1;
+    else
+      execute 'insert into surveys(survey) values(' || _survey || ')';
+      select into survid * from surveys where surveys.survey = _survey;
+      return survid.id;
+    end if;
+    --return survid;
+  end
+  $func$
+  language 'plpgsql';

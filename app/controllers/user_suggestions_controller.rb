@@ -3,15 +3,6 @@ class UserSuggestionsController < ApplicationController
     sortBy = params[:sortBy]
     if sortBy != nil
       @usersuggestions = UserSuggestion.order("" + sortBy + " ASC")
-    
-    #if sortBy == "division"
-    #  @usersuggestions = UserSuggestion.order("division ASC")
-    #elsif sortBy == "department"
-    #  @usersuggestions = UserSuggestion.order("department ASC")
-    #elsif sortBy == "name"
-    #  @usersuggestions = UserSuggestion.order("last_name ASC")
-    #elsif sortBy == "mod"
-    #  @usersuggestions = UserSuggestion.order("updated_at ASC")
     else
       @usersuggestions = UserSuggestion.all
       respond_to do |format|
@@ -20,15 +11,7 @@ class UserSuggestionsController < ApplicationController
       end
     end
   end
-  
-  #def suggestion # TEST FOR FLEX
-  #  @usersuggestions = UserSuggestion.all
-  #  respond_to do |format|
-  #    format.html
-  #    format.xml {render :xml => @usersuggestions, :dasherize => false}
-  #  end
-  #end
-  
+    
   def divChairView
     division = cookies.signed[:user_div]
     @usersuggestions = UserSuggestion.find_all_by_division(division)
@@ -48,7 +31,6 @@ class UserSuggestionsController < ApplicationController
       ",'" + suggestion + "')"
     conn.insert(sql)
     redirect_to :controller => "user_suggestions", :action => "index"
-    
   end
   
   def chooseSuggestion
@@ -64,5 +46,21 @@ class UserSuggestionsController < ApplicationController
   
   def edit
     @usersuggestion = UserSuggestion.find_by_suggestionid(params[:id])
+  end
+  
+  def divSuggestions
+    conn = ActiveRecord::Base.connection
+    @divs = conn.select_values("select distinct division from users")
+    @numOfSuggs = []
+    i = 0
+    @divs.each do |d|
+      @numOfSuggs[i] = UserSuggestion.find_all_by_division(d).length
+      i = i + 1
+    end
+  end
+  
+  def chooseSuggSurvey
+    @usersuggestions = UserSuggestion.find_all_by_division(cookies.signed[:user_div])
+    @notice = params[:notice]
   end
 end

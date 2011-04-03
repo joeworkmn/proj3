@@ -7,6 +7,7 @@ Proj2::Application.routes.draw do
   get "pages/logout"
   root :to => "pages#login"
   match "pages/continue" => "pages#continue"
+  
   get "users/new"
   match 'users/create' => 'users#create' 
   get "users/edit"
@@ -28,7 +29,14 @@ Proj2::Application.routes.draw do
   match 'user_suggestions/edit' => 'user_suggestions#edit'
   match 'user_suggestions/divChairView/' => 'user_suggestions#divChairView'
   match 'user_suggestions/depView/' => 'user_suggestions#depView'
-    
+  match 'user_suggestions/divSuggestions' => 'user_suggestions#divSuggestions'
+  match 'user_suggestions/chooseSuggSurvey' => 'user_suggestions#chooseSuggSurvey'
+  
+  match 'sugg_surveys/chooseSurvey' => 'sugg_surveys#chooseSurvey'
+  match 'sugg_surveys/createSurvey' => 'sugg_surveys#createSurvey'
+  match 'sugg_surveys/index' => 'sugg_surveys#index'  
+  match 'sugg_surveys/takeSurvey' => 'sugg_surveys#takeSurvey'
+  match 'sugg_surveys/surveyResult' => 'sugg_surveys#surveyResult'
     
   # The priority is based upon order of creation:
   # first created -> highest priority.

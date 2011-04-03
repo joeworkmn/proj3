@@ -64,9 +64,6 @@ class UsersController < ApplicationController
   
   def resetPassResult
     @result = "Password has been changed"
-    @first_name = params[:first_name] #TEST for chart
-    @last_name = params[:last_name]   #TEST for chart
-    
   end
 
   def chart
