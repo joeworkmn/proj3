@@ -8,6 +8,7 @@ Proj2::Application.routes.draw do
   root :to => "pages#login"
   match "pages/continue" => "pages#continue"
   
+  
   get "users/new"
   match 'users/create' => 'users#create' 
   get "users/edit"

@@ -22,7 +22,8 @@ class SuggSurveysController < ApplicationController
   end
   
   def createSurvey
-    id = params[:id].first
+    id = params[:survey].first
+    #survey_title = params[:survey][:survey_title]
     conn = ActiveRecord::Base.connection
     #test = conn.select_value("select insertSurvey(" + id.to_s + ")").to_i
     survid = conn.select_value("select id from surveys where survey = " + id.to_s + "").to_i
@@ -38,7 +39,11 @@ class SuggSurveysController < ApplicationController
   end
   
   def index
-    @surveys = SuggSurvey.find_all_by_division(cookies.signed[:user_div])
+    @surveys = SuggSurvey.order("rating DESC").find_all_by_division(cookies.signed[:user_div])
+    respond_to do |format|
+        format.html
+        format.xml {render :xml => @surveys, :dasherize => false}
+      end
   end
   
   def takeSurvey
@@ -72,8 +77,11 @@ class SuggSurveysController < ApplicationController
     else
       conn.update("update surveys set " + rating.to_s + " = " + count.to_s + " where
         survey = " + survey.to_s + "")
+      conn.update("update surveys set rating = ((strongly_agree*1.5)+agree)-((strongly_disagree*1.5)+disagree)")
       redirect_to :action => "index"
     end
   end
+  
+   
 
 end

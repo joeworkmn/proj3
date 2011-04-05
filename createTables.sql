@@ -40,8 +40,10 @@ drop table if exists surveys cascade;
 create table surveys(
   id integer not null primary key default nextval('survey_id_seq'),
   survey integer references suggestions(id),
+  survey_title text,
   strongly_agree integer default 0, agree integer default 0, neutral integer default 0,
-  disagree integer default 0, strongly_disagree integer default 0
+  disagree integer default 0, strongly_disagree integer default 0,
+  rating integer default 0
 );
 
 drop table if exists users_survey cascade;
@@ -66,7 +68,7 @@ create view user_suggestion_view_init as
   suggestions.updated_at, suggestions.user_id
   from users join suggestions on users.id = suggestions.user_id;
   
--- create view for selecting a survey create
+-- create view for the surveys that have been created
 drop view if exists sugg_survey_view cascade;
 create view sugg_survey_view as select * from user_suggestion_view, surveys where
   user_suggestion_view.suggestionid = surveys.survey;
@@ -75,7 +77,7 @@ create view sugg_survey_view as select * from user_suggestion_view, surveys wher
 drop view if exists part1 cascade;
 create view part1 as select users.id as uid, users.first_name, users.last_name, users.division, 
   users.department, users_survey.userid as survey_uid, users_survey.survid, 
-  surveys.id as sid, surveys.survey, surveys.strongly_agree, surveys.agree, 
+  surveys.id as sid, surveys.survey, surveys.survey_title, surveys.strongly_agree, surveys.agree, 
   surveys.neutral, surveys.disagree, surveys.strongly_disagree  from users join 
   users_survey on users.id = users_survey.userid join surveys on users_survey.survid = surveys.id;
 

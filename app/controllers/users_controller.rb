@@ -1,6 +1,10 @@
 class UsersController < ApplicationController
   def index
     @users = User.all
+    respond_to do |format|
+        format.html
+        format.xml {render :xml => @users, :dasherize => false}
+    end
   end
   
   def new
@@ -8,12 +12,18 @@ class UsersController < ApplicationController
   end
   
   def create
-    first_name = params[:user][:fname]
-    last_name = params[:user][:lname]
-    username = params[:user][:uname]
-    password = params[:user][:pword]
-    division = params[:user][:div]
-    department = params[:user][:dep]
+    #first_name = params[:user][:fname]
+    first_name = params[:first_name]
+    #last_name = params[:user][:lname]
+    last_name = params[:last_name]
+    #username = params[:user][:uname]
+    username = params[:username]
+    #password = params[:user][:pword]
+    password = params[:pword]
+    #division = params[:user][:div]
+    division = params[:div]
+    #department = params[:user][:dep]
+    department = params[:dep]
     conn = ActiveRecord::Base.connection
     sql = "insert into users_view (first_name,last_name,username,password," +
           "division,department) values ('" + first_name + "','" + last_name + 

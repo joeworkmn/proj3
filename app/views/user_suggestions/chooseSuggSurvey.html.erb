@@ -2,7 +2,7 @@
   <% if cookies.signed[:divChair] %>
     <h2>Choose Suggestion to Create a Survey</h2>
     <font color="red"><h4><%= @notice %> </h4></font>
-    <%= form_for :id, :url => {:controller => "sugg_surveys", :action => "createSurvey"} do |f| %>
+    <%= form_for :survey, :url => {:controller => "sugg_surveys", :action => "createSurvey"} do |f| %>
       <%= f.collection_select @usersuggestion, @usersuggestions, :suggestionid, :suggestion,
       options = {:prompt => "Choose a suggestion for survey"}, :class => "suggestion" %><br />
       <%= f.submit "Submit" %>
