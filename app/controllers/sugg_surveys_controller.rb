@@ -77,7 +77,8 @@ class SuggSurveysController < ApplicationController
     else
       conn.update("update surveys set " + rating.to_s + " = " + count.to_s + " where
         survey = " + survey.to_s + "")
-      conn.update("update surveys set rating = ((strongly_agree*1.5)+agree)-((strongly_disagree*1.5)+disagree)")
+      conn.update("update surveys set rating = ((strongly_agree*1.5)+agree)-((strongly_disagree*1.5)+disagree)
+        where id = " + survid.to_s + "")
       redirect_to :action => "index"
     end
   end
