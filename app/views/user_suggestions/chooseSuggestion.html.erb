@@ -1,0 +1,10 @@
+<% if cookies.signed[:authenticated] %>
+  <% if !(cookies.signed[:admin]) %>
+    <h2>Edit a suggestion</h2>
+    <%= form_for :id, :url => {:action => "edit"} do |f| %>
+      <%= f.collection_select @usersuggestion, @usersuggestions, :suggestionid, :suggestion,
+      options = {:prompt => "Choose a suggestion to edit"}, :class => "suggestion" %><br />
+      <%= f.submit "Submit" %>
+    <% end %>
+  <% end %>
+<% end %>

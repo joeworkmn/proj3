@@ -1,0 +1,27 @@
+<h2>Public Page</h2>
+<table border="1">
+  <tr>
+    <th>Name</th><th>Division</th><th>Department</th><th>Suggestion</th>
+    <th>Date Created</th><th>Last Updated</th>
+  </tr>
+  <% @usersuggestions.each do |us| %>
+    <tr>
+      <td><%= us.first_name %> <%= us.last_name %> </td><td><%= us.division %></td>
+      <td><%= us.department %></td><td><%= us.suggestion %></td>
+      <td><%= us.created_at %></td><td><%= us.updated_at %></td>
+    </tr>
+  <% end %>
+</table> <br />
+<%= link_to "Order by division", :controller => "user_suggestions", :action => "index", 
+    :sortBy => "division" %><br />
+<%= link_to "Order by department", :controller => "user_suggestions", :action => "index", 
+    :sortBy => "department" %><br />
+<%= link_to "Order by name", :controller => "user_suggestions", :action => "index", 
+    :sortBy => "last_name" %><br />
+<%= link_to "Order by creation date", :controller => "user_suggestions", 
+    :action => "index" %><br />
+<%= link_to "Order by modification date", :controller => "user_suggestions",
+    :action => "index", :sortBy => "updated_at" %><br />
+<% if cookies.signed[:authenticated] %>
+  <%= link_to "Main", :controller => "pages", :action => "continue" %>
+<% end %>

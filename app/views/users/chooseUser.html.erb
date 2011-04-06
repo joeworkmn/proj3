@@ -1,0 +1,11 @@
+<!-- app/views/users/chooseUser.html.erb -->
+
+  <% if cookies.signed[:admin] %>
+    <%= form_for :id, :url => {:action => "edit"} do |f| %>
+      <%= f.collection_select @user, @users, :id, :username, 
+        options = {:prompt => "Choose a user"}, :class => "user" %><br />
+      <%= f.submit "Submit" %>
+    <% end %>
+  <% else %>
+    <h2>You do not have permission to view this page</h2>
+  <% end %>

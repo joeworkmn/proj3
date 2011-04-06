@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+			   xmlns:s="library://ns.adobe.com/flex/spark" 
+			   xmlns:mx="library://ns.adobe.com/flex/mx" minWidth="955" minHeight="600"
+	           applicationComplete="getSuggestions.send()">
+	<fx:Script>
+		<![CDATA[
+			[Bindable] private var suggestionData:XML;
+		]]>
+	</fx:Script>
+	<fx:Declarations>
+		<!-- Place non-visual elements (e.g., services, value objects) here -->
+		<mx:HTTPService id="getSuggestions"
+		    url="http://localhost:3000/user_suggestions.xml"
+			resultFormat="e4x"
+			result="suggestionData=event.result as XML" />
+	</fx:Declarations>
+	<mx:DataGrid id="suggestionGrid" width="100%"
+		dataProvider="{suggestionData.user_suggestion}">
+		<mx:columns>
+			<mx:DataGridColumn headerText="First Name"
+				dataField="first_name" />
+			<mx:DataGridColumn headerText="Last Name"
+			    dataField="last_name" />
+			<mx:DataGridColumn headerText="Division"
+				dataField="division" />
+			<mx:DataGridColumn headerText="Department"
+				dataField="department" />
+			<mx:DataGridColumn headerText="Suggestion"
+				dataField="suggestion" />
+			<mx:DataGridColumn headerText="Date Created"
+				dataField="created_at" />
+			<mx:DataGridColumn headerText="Last Updated"
+			    dataField="updated_at" />
+		</mx:columns>
+	</mx:DataGrid>
+</s:Application>

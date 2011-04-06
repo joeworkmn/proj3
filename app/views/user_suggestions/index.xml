@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<data type="array">
+  <user_suggestion>
+    <created_at type="datetime">2011-03-04T06:28:02Z</created_at>
+    <department>TECH</department>
+    <division>TECH</division>
+    <enc_pass>ff96d393aad4f2857c8e61d09e60165028ce79225bf9d2e1bf51a5bc56182979</enc_pass>
+    <first_name>John</first_name>
+    <last_name>Doe</last_name>
+    <password>johnpass</password>
+    <salt>760214c731d3d9baf8dcf34c6bd6000a002a725f82ac56d0be73def1cfc1abef</salt>
+    <suggestion>Johns suggestion</suggestion>
+    <suggestionid type="integer">1</suggestionid>
+    <updated_at type="datetime">2011-03-04T06:28:02Z</updated_at>
+    <userid type="integer">2</userid>
+    <username>johnuser</username>
+  </user_suggestion>
+  <user_suggestion>
+    <created_at type="datetime">2011-03-04T06:33:23Z</created_at>
+    <department>ICS</department>
+    <division>TECH</division>
+    <enc_pass>7f41f70879ec4fb2afc0862f6c1ff513576fee90e2a894ee771ad464ddfa4820</enc_pass>
+    <first_name>Jane</first_name>
+    <last_name>Doe</last_name>
+    <password>janepass</password>
+    <salt>d1aab43a536d34992f5af548da49018b62ec47ddac7543b5db9988a99e3d126c</salt>
+    <suggestion>janes newly updated suggestion</suggestion>
+    <suggestionid type="integer">2</suggestionid>
+    <updated_at type="datetime">2011-03-05T05:30:24Z</updated_at>
+    <userid type="integer">3</userid>
+    <username>janeuser</username>
+  </user_suggestion>
+  <user_suggestion>
+    <created_at type="datetime">2011-03-05T01:35:46Z</created_at>
+    <department>MATH</department>
+    <division>LIBARTS</division>
+    <enc_pass>a3871de720603e1d1f361d5d1865a10ad962e64c918c5750095d4acd613ca39e</enc_pass>
+    <first_name>Bill</first_name>
+    <last_name>Clinton</last_name>
+    <password>billpass</password>
+    <salt>eb0169cad8df9cb4639091aba7ad60938d99be8cc200e8fb74820be69fa885b2</salt>
+    <suggestion>bills suggestion</suggestion>
+    <suggestionid type="integer">3</suggestionid>
+    <updated_at type="datetime">2011-03-05T01:35:46Z</updated_at>
+    <userid type="integer">7</userid>
+    <username>billuser</username>
+  </user_suggestion>
+  <user_suggestion>
+    <created_at type="datetime">2011-03-05T01:44:12Z</created_at>
+    <department>TECH</department>
+    <division>TECH</division>
+    <enc_pass>ff96d393aad4f2857c8e61d09e60165028ce79225bf9d2e1bf51a5bc56182979</enc_pass>
+    <first_name>John</first_name>
+    <last_name>Doe</last_name>
+    <password>johnpass</password>
+    <salt>760214c731d3d9baf8dcf34c6bd6000a002a725f82ac56d0be73def1cfc1abef</salt>
+    <suggestion>johns second suggestion</suggestion>
+    <suggestionid type="integer">4</suggestionid>
+    <updated_at type="datetime">2011-03-05T01:44:12Z</updated_at>
+    <userid type="integer">2</userid>
+    <username>johnuser</username>
+  </user_suggestion>
+  <user_suggestion>
+    <created_at type="datetime">2011-03-05T01:47:36Z</created_at>
+    <department>TECH</department>
+    <division>TECH</division>
+    <enc_pass>ff96d393aad4f2857c8e61d09e60165028ce79225bf9d2e1bf51a5bc56182979</enc_pass>
+    <first_name>John</first_name>
+    <last_name>Doe</last_name>
+    <password>johnpass</password>
+    <salt>760214c731d3d9baf8dcf34c6bd6000a002a725f82ac56d0be73def1cfc1abef</salt>
+    <suggestion>johns updated suggestion</suggestion>
+    <suggestionid type="integer">5</suggestionid>
+    <updated_at type="datetime">2011-03-05T05:19:18Z</updated_at>
+    <userid type="integer">2</userid>
+    <username>johnuser</username>
+  </user_suggestion>
+  <user_suggestion>
+    <created_at type="datetime">2011-03-05T06:31:59Z</created_at>
+    <department>TECH</department>
+    <division>TECH</division>
+    <enc_pass>ff96d393aad4f2857c8e61d09e60165028ce79225bf9d2e1bf51a5bc56182979</enc_pass>
+    <first_name>John</first_name>
+    <last_name>Doe</last_name>
+    <password>johnpass</password>
+    <salt>760214c731d3d9baf8dcf34c6bd6000a002a725f82ac56d0be73def1cfc1abef</salt>
+    <suggestion>johns latest updated suggestion</suggestion>
+    <suggestionid type="integer">6</suggestionid>
+    <updated_at type="datetime">2011-03-05T06:32:29Z</updated_at>
+    <userid type="integer">2</userid>
+    <username>johnuser</username>
+  </user_suggestion>
+  <user_suggestion>
+    <created_at type="datetime">2011-03-05T06:40:21Z</created_at>
+    <department>ICS</department>
+    <division>TECH</division>
+    <enc_pass>7f41f70879ec4fb2afc0862f6c1ff513576fee90e2a894ee771ad464ddfa4820</enc_pass>
+    <first_name>Jane</first_name>
+    <last_name>Doe</last_name>
+    <password>janepass</password>
+    <salt>d1aab43a536d34992f5af548da49018b62ec47ddac7543b5db9988a99e3d126c</salt>
+    <suggestion>janes second updated suggestion</suggestion>
+    <suggestionid type="integer">7</suggestionid>
+    <updated_at type="datetime">2011-03-05T06:40:48Z</updated_at>
+    <userid type="integer">3</userid>
+    <username>janeuser</username>
+  </user_suggestion>
+  <user_suggestion>
+    <created_at type="datetime">2011-03-05T06:42:01Z</created_at>
+    <department>CENT</department>
+    <division>TECH</division>
+    <enc_pass>16dd015ea4123d0194331fe1ed8d6b8fe4c51b7022dee3d75c8f00e48a121bb5</enc_pass>
+    <first_name>Bob</first_name>
+    <last_name>Dole</last_name>
+    <password>bobpass</password>
+    <salt>1c53aaf194d0b314454c55506ba0addbd7da40150d71ab1bd54aaa1b595fd524</salt>
+    <suggestion>bobs first updated suggestion</suggestion>
+    <suggestionid type="integer">8</suggestionid>
+    <updated_at type="datetime">2011-03-05T06:42:50Z</updated_at>
+    <userid type="integer">4</userid>
+    <username>bobuser</username>
+  </user_suggestion>
+  <user_suggestion>
+    <created_at type="datetime">2011-03-05T07:08:32Z</created_at>
+    <department>EARTH</department>
+    <division>SCI</division>
+    <enc_pass>e537e5aba770c0461a19688ba4ae0dcbf5eccda710a6f3e7e011611b596f3c2e</enc_pass>
+    <first_name>Daniel</first_name>
+    <last_name>Chow</last_name>
+    <password>danpass</password>
+    <salt>da48fbdf0e7e6c43c416e3c9f57d4ae2052f019a85a7b7ee1b1278ceb44abe20</salt>
+    <suggestion>dans suggestion</suggestion>
+    <suggestionid type="integer">9</suggestionid>
+    <updated_at type="datetime">2011-03-05T07:08:32Z</updated_at>
+    <userid type="integer">8</userid>
+    <username>danuser</username>
+  </user_suggestion>
+</data>

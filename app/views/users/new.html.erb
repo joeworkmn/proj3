@@ -1,0 +1,14 @@
+  <% if cookies.signed[:admin] %>
+    <h1>New user</h1>
+    <% form_for :user, :url => {:action => "create"} do |f| %>
+      <%= f.label "First Name" %><br /><%= f.text_field :fname %><br /><br />
+      <%= f.label "Last Name" %><br /><%= f.text_field :lname %><br /><br />
+      <%= f.label "Username" %><br /><%= f.text_field :uname %><br /><br />
+      <%= f.label "Password" %><br /><%= f.password_field :pword %><br /><br />
+      <%= f.label "Division" %><br /><%= f.text_field :div %><br /><br />
+      <%= f.label "Department" %><br /><%= f.text_field :dep %><br /><br />
+      <%= f.submit "Submit" %>
+    <% end %>
+  <% else %>
+    <h2>You do not have permission to view this page</h2>
+  <% end %>

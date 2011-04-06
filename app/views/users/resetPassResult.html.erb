@@ -1,0 +1,10 @@
+<% if cookies.signed[:admin] %>
+  <h2><%= @result %></h2><br />
+  <% if @result == "Password has been changed" %>
+    <%= link_to "Change another password", :controller => "users", :action => 
+        "resetPass" %><br />
+  <% elsif @result == "Failed to change password" %>
+    <%= link_to "Try again", :controller => "users", :action => "resetPass" %><br />
+  <% end %>
+  <%= link_to "Main", :controller => "pages", :action => "continue" %>
+<% end %>

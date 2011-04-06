@@ -1,0 +1,12 @@
+<% if cookies.signed[:authenticated] %>
+  <% if !(cookies.signed[:admin]) %>
+    <h2>New Suggestion</h2>
+    <%= form_for :user_suggestion, :url => {:action => "create"} do |f| %>
+      <%= f.label "Make a suggestion" %><br />
+      <%= f.text_area :suggestion %><br />
+      <%= f.submit "Submit" %>
+    <% end %>
+  <% end %>
+<% else %>
+  <h2>You do not have access to view this page</h2>
+<% end %>

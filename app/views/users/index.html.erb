@@ -1,0 +1,26 @@
+<% if cookies.signed[:authenticated] %>
+<h2>List of all user</h2>
+<table border="1">
+  <tr>
+   <th>First Name</th><th>Last Name</th>
+   <% if cookies.signed[:admin] %>
+     <th>Username</th>
+   <% end %>
+   <th>Division</th><th>Department</th>
+  </tr>
+  <% @users.each do |u| %>
+    <tr>
+      <td><%= u.first_name %></td><td><%= u.last_name %></td>
+      <% if cookies.signed[:admin] %>
+        <td><%= u.username %></td>
+      <% end %>
+      <td><%= u.division %></td><td><%= u.department %></td>
+    </tr>
+  <% end %>
+</table><br />
+  <%=link_to "Main", :controller => "pages", :action => "continue" %><br />
+<% end %>
+<% if cookies.signed[:admin] %>
+  <%= link_to "Add User", :controller => "users", :action => "new" %><br />
+  <%= link_to "Edit User", :controller => "users", :action => "chooseUser" %>
+<% end %>

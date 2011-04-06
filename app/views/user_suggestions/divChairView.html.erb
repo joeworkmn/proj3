@@ -1,0 +1,24 @@
+<% if cookies.signed[:authenticated] %>
+  <% if !(cookies.signed[:admin]) %>
+    <h2><%= cookies.signed[:user_div] %> Division's Suggestions</h2>
+    <table border="1">
+      <tr>
+        <th>Name</th><th>Division</th><th>Department</th><th>Suggestion</th>
+        <th>Date Created</th><th>Last Update</th>
+      </tr>
+      <% @usersuggestions.each do |us| %>
+        <tr>
+          <td><%= us.first_name %> <%= us.last_name %> </td><td><%= us.division %></td>
+          <td><%= us.department %></td><td><%= us.suggestion %></td>
+          <td><%= us.created_at %></td><td><%= us.updated_at %></td>
+        </tr>
+      <%end %>
+    </table><br />
+    <%= link_to "Main", :controller => "pages", :action => "continue" %><br />
+    <% if cookies.signed[:divChair] %>
+      <%= link_to "Edit Suggestion", :controller => "user_suggestions", 
+        :action => "chooseSuggestion" %>
+    <% end %>
+  <% end %>
+<% end %>
+

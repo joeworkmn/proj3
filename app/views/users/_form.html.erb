@@ -1,0 +1,8 @@
+<% form_for :user, :url => {:action => "create"} do |f| %>
+  <%= f.label "First Name" %><br /><%= f.text_field :fname %>
+  <%= f.label "Last Name" %><br /><%= f.text_field :lname %>
+  <%= f.label "Username" %><br /><%= f.text_field :uname %>
+  <%= f.label "Password" %><br /><%= f.password_field :pword %>
+  <%= f.label "Division" %><br /><%= f.text_field :div %>
+  <%= f.label "Department" %><br /><%= f.text_field :dep %>
+<% end %>

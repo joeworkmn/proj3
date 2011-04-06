@@ -1,0 +1,14 @@
+<!-- app/views/users/edit.html.erb -->
+
+  <% if cookies.signed[:admin] %>
+    <%= form_for @user, :url => {:action => "update"} do |f| %>
+      <%= f.label "First Name: " %><br /><%= f.text_field :first_name %><br />
+      <%= f.label "Last Name: " %><br /><%= f.text_field :last_name %><br />
+      <%= f.label "Username: " %><br /><%= f.text_field :username %><br />
+      <%= f.label "Division: " %><br /><%= f.text_field :division %><br />
+      <%= f.label "Department: " %><br /><%= f.text_field :department %><br />
+      <%= f.hidden_field :id %>
+      <%= f.submit "Submit" %>
+    <% end %>
+  <% end %>
+
