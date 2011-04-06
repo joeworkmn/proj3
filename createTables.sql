@@ -43,7 +43,7 @@ create table surveys(
   survey_title text,
   strongly_agree integer default 0, agree integer default 0, neutral integer default 0,
   disagree integer default 0, strongly_disagree integer default 0,
-  rating integer default 0
+  rating float default 0
 );
 
 drop table if exists users_survey cascade;

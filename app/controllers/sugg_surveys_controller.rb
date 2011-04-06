@@ -22,8 +22,8 @@ class SuggSurveysController < ApplicationController
   end
   
   def createSurvey
-    id = params[:survey].first
-    #survey_title = params[:survey][:survey_title]
+    id = params[:survey][:usersuggestion]
+    survey_title = params[:survey][:survey_title]
     conn = ActiveRecord::Base.connection
     #test = conn.select_value("select insertSurvey(" + id.to_s + ")").to_i
     survid = conn.select_value("select id from surveys where survey = " + id.to_s + "").to_i
@@ -32,7 +32,7 @@ class SuggSurveysController < ApplicationController
       notice = "Survey has already been created for this suggestion"
       redirect_to :controller => "user_suggestions", :action => "chooseSuggSurvey", :notice => notice
     else
-      sql = "insert into surveys(survey) values(" + id.to_s + ")"
+      sql = "insert into surveys(survey, survey_title) values(" + id.to_s + ",'" + survey_title.to_s + "')"
       conn.insert(sql)
       redirect_to :action => "index"
     end
