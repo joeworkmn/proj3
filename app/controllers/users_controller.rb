@@ -11,6 +11,7 @@ class UsersController < ApplicationController
     
   end
   
+  skip_before_filter :verify_authenticity_token
   def create
     #first_name = params[:user][:fname]
     first_name = params[:first_name]
