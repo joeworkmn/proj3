@@ -61,6 +61,14 @@ class UserSuggestionsController < ApplicationController
   
   def chooseSuggSurvey
     @usersuggestions = UserSuggestion.find_all_by_division(cookies.signed[:user_div])
+    @createdSurveys = SuggSurvey.all
+    @usersuggestions.each do |us|
+      @createdSurveys.each do |cs|
+        if us.suggestionid == cs.survey
+          us.suggestion = us.suggestion + " (SURVEY)"
+        end
+      end
+    end
     @notice = params[:notice]
   end
 end

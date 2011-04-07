@@ -9,15 +9,9 @@ class SuggSurveysController < ApplicationController
     @surveysAll.each do |a|
       @surveysTaken.each do |t|
         if a.id == t.survid and t.uid == userid
-          a.suggestion = a.suggestion + " (TAKEN)"
+          a.survey_title = a.survey_title + " (TAKEN)"
         end
       end  
-    end
-    @surveysRest = [[]]
-    @surveysAll.each do |a|
-      if a.suggestion != ""
-        @surveysRest = a
-      end 
     end
   end
   
@@ -82,7 +76,5 @@ class SuggSurveysController < ApplicationController
       redirect_to :action => "index"
     end
   end
-  
-   
 
 end
