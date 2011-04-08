@@ -7,6 +7,8 @@ Proj2::Application.routes.draw do
   get "pages/logout"
   root :to => "pages#login"
   match "pages/continue" => "pages#continue"
+  match "pages/welcome" => "pages#welcome"
+  match "pages/login" => "pages#login"
   
   
   get "users/new"

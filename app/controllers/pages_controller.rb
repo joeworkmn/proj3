@@ -1,11 +1,14 @@
 class PagesController < ApplicationController
+  skip_before_filter :verify_authenticity_token
   def login
-    if params[:user] == nil
-      username = password = ""
-    else
-      username = params[:user][:username]
-      password = params[:user][:password]
-    end
+    #if params[:user] == nil
+    #  username = password = ""
+    #else
+      username = params[:user_name]
+      password = params[:password]
+      #username = params[:user][:username]
+      #password = params[:user][:password]
+    #end
     conn = ActiveRecord::Base.connection
     user_id = conn.select_value("select get_id('" + username + "','" + password +
               "')").to_i
@@ -24,7 +27,7 @@ class PagesController < ApplicationController
       elsif cookies.signed[:user_div] == cookies.signed[:user_dep]
         cookies.signed[:divChair] = true
       end
-      redirect_to :controller => "pages", :action => "continue"
+      #redirect_to :controller => "pages", :action => "continue"
     end
   end
 
@@ -46,6 +49,10 @@ class PagesController < ApplicationController
     cookies.delete :user_lname
     cookies.delete :authenticated
     redirect_to :controller => "pages", :action => "login"
+  end
+  
+  def welcome
+  
   end
 
 end
