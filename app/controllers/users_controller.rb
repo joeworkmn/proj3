@@ -20,11 +20,11 @@ class UsersController < ApplicationController
     #username = params[:user][:uname]
     username = params[:username]
     #password = params[:user][:pword]
-    password = params[:pword]
+    password = params[:password]
     #division = params[:user][:div]
-    division = params[:div]
+    division = params[:division]
     #department = params[:user][:dep]
-    department = params[:dep]
+    department = params[:department]
     conn = ActiveRecord::Base.connection
     sql = "insert into users_view (first_name,last_name,username,password," +
           "division,department) values ('" + first_name + "','" + last_name + 
