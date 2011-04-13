@@ -1,14 +1,14 @@
 class PagesController < ApplicationController
   skip_before_filter :verify_authenticity_token
   def login
-    if params[:user] == nil
-      username = password = ""
-    else
-      #username = params[:user_name]
-      #password = params[:password]
-      username = params[:user][:username]
-      password = params[:user][:password]
-    end
+    #if params[:user] == nil
+    #  username = password = ""
+    #else
+      username = params[:username]
+      password = params[:password]
+      #username = params[:user][:username]
+      #password = params[:user][:password]
+    #end
     conn = ActiveRecord::Base.connection
     user_id = conn.select_value("select get_id('" + username + "','" + password +
               "')").to_i
