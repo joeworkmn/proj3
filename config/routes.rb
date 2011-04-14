@@ -9,6 +9,7 @@ Proj2::Application.routes.draw do
   match "pages/continue" => "pages#continue"
   match "pages/welcome" => "pages#welcome"
   match "pages/login" => "pages#login"
+  match 'pages/loggedInID' => 'pages#loggedInID'
   
   
   get "users/new"
@@ -23,6 +24,7 @@ Proj2::Application.routes.draw do
   match 'users/updatePass' => 'users#updatePass'
   match 'users/resetPassResult' => 'users#resetPassResult'
   match 'users/chart' => 'users#chart'
+  
   
   match 'suggestions/update' => 'suggestions#update'
   match 'user_suggestions' => 'user_suggestions#index'

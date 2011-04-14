@@ -87,4 +87,5 @@ class UsersController < ApplicationController
     #redirect_to "http://localhost/chart.html", :fname_lname => :combine
     redirect_to :controller => "users", :action => "resetPassResult", :first_name => myarray
   end
+  
 end

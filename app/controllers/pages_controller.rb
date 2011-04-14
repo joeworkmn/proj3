@@ -27,8 +27,15 @@ class PagesController < ApplicationController
       elsif cookies.signed[:user_div] == cookies.signed[:user_dep]
         cookies.signed[:divChair] = true
       end
-      redirect_to :controller => "pages", :action => "continue"
+    else
+      cookies.signed[:user_id] = 0
     end
+    redirect_to :controller => "pages", :action => "loggedInID"
+  end
+  
+  def loggedInID
+    @id = cookies.signed[:user_id]
+    render :xml => @id.to_s
   end
 
   def logout
