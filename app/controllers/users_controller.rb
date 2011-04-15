@@ -4,6 +4,7 @@ class UsersController < ApplicationController
     respond_to do |format|
         format.html
         format.xml {render :xml => @users, :dasherize => false}
+        format.json {render :json => @users}
     end
   end
   
