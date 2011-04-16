@@ -1,15 +1,22 @@
 class UserSuggestionsController < ApplicationController
   def index
-    sortBy = params[:sortBy]
-    if sortBy != nil
-      @usersuggestions = UserSuggestion.order("" + sortBy + " ASC")
-    else
-      @usersuggestions = UserSuggestion.all
+    #sortBy = params[:sortBy]
+    #if sortBy != nil
+    #  @usersuggestions = UserSuggestion.order("" + sortBy + " ASC")
+    #  respond_to do |format|
+    #    format.html
+    #    format.xml {render :xml => @usersuggestions, :dasherize => false}
+    #    format.json {render :json => @usersuggestions}
+    #  end
+    #else
+      @usersuggestions = GwtSugg.all
+      #@usersuggestions = UserSuggestion.all
       respond_to do |format|
         format.html
         format.xml {render :xml => @usersuggestions, :dasherize => false}
+        format.json {render :json => @usersuggestions}
       end
-    end
+    #end
   end
     
   def divChairView

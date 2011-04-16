@@ -85,6 +85,10 @@ create view part1 as select users.id as uid, users.first_name, users.last_name, 
 drop view if exists user_survey_view cascade;
 create view user_survey_view as select * from part1, suggestions where part1.survey = suggestions.id;
 
+--create view for GWT. Contains suggestions with their ID so a user can choose a suggestin
+drop view if exists gwt_sugg_view cascade;
+create view gwt_sugg_view as select suggestion, suggestionid from user_suggestion_view;
+
 
 --select part1.uid, part1.sid, part1.survey, suggestions.id as suggid, 
 --  suggestions.suggestion from part1 join suggestions on part1.survey = suggestions.id;

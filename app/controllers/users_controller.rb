@@ -1,6 +1,7 @@
 class UsersController < ApplicationController
   def index
     @users = User.all
+    @users << "#display_users_celltable"
     respond_to do |format|
         format.html
         format.xml {render :xml => @users, :dasherize => false}
