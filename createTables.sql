@@ -7,6 +7,10 @@ drop sequence if exists suggestion_id_seq cascade;
 create sequence suggestion_id_seq;
 drop sequence if exists survey_id_seq cascade;
 create sequence survey_id_seq;
+drop sequence if exists question_id_seq cascade;
+create sequence question_id_seq;
+drop sequence if exists option_id_seq cascade;
+create sequence option_id_seq;
 
 -- create tables
 drop table if exists users cascade;
@@ -51,6 +55,26 @@ create table users_survey(
   userid integer references users(id),
   survid integer references surveys(id)
 );
+
+drop table if exists questions cascade;
+create table questions(
+  questionid integer not null primary key default nextval('question_id_seq'),
+  survqid integer references surveys(id),
+  question_text text
+);
+
+drop table if exists options cascade;
+create table options(
+  optionid integer not null primary key default nextval('option_id_seq'),
+  questopid integer references questions(questionid),
+  option_text text,
+  times_chosen integer default 0
+);
+
+drop view if exists survey_questions_view;
+create view survey_questions_view as select surveys.id as surveyid, surveys.survey_title, 
+  questions.questionid, questions.survqid, questions.question_text from surveys join questions on surveys.id = questions.survqid;
+
 
 --create view for web app
 drop view if exists user_suggestion_view cascade;
