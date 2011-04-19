@@ -71,9 +71,24 @@ create table options(
   times_chosen integer default 0
 );
 
+drop view if exists survey_suggestion;
+create view survey_suggestion as select suggestions.id as suggid, suggestions.suggestion, 
+  surveys.id as surveyid, surveys.survey, surveys.survey_title, surveys.strongly_agree,
+  surveys.agree, surveys.neutral, surveys.disagree, surveys.strongly_disagree from suggestions join surveys on suggestions.id = surveys.survey;
+
 drop view if exists survey_questions_view;
-create view survey_questions_view as select surveys.id as surveyid, surveys.survey_title, 
-  questions.questionid, questions.survqid, questions.question_text from surveys join questions on surveys.id = questions.survqid;
+create view survey_questions_view as select survey_suggestion.suggid, survey_suggestion.suggestion, 
+  survey_suggestion.surveyid, survey_suggestion.survey_title, survey_suggestion.strongly_agree,
+  survey_suggestion.agree, survey_suggestion.neutral, survey_suggestion.disagree, survey_suggestion.strongly_disagree,
+  questions.questionid, questions.survqid, questions.question_text from survey_suggestion LEFT OUTER join questions on survey_suggestion.surveyid = questions.survqid;
+  
+drop view if exists take_survey_view;
+create view take_survey_view as select survey_questions_view.suggestion, survey_questions_view.surveyid, 
+  survey_questions_view.survey_title, survey_questions_view.strongly_agree, survey_questions_view.agree, survey_questions_view.neutral,
+  survey_questions_view.disagree, survey_questions_view.strongly_disagree, survey_questions_view.questionid, 
+  survey_questions_view.question_text, options.questopid, options.option_text, 
+  options.times_chosen from survey_questions_view left outer join options on survey_questions_view.questionid = options.questopid;
+  
 
 
 --create view for web app

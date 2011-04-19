@@ -27,15 +27,16 @@ class PagesController < ApplicationController
       elsif cookies.signed[:user_div] == cookies.signed[:user_dep]
         cookies.signed[:divChair] = true
       end
+      loginResult = "logged_in_yes"
     else
-      cookies.signed[:user_id] = 0
+      loginResult = "logged_in_no"
     end
-    redirect_to :controller => "pages", :action => "loggedInID"
+    redirect_to :controller => "pages", :action => "loggedIn", :loginResult => loginResult
   end
   
-  def loggedInID
-    @id = cookies.signed[:user_id]
-    render :xml => @id.to_s
+  def loggedIn
+    @result = params[:loginResult]
+    render :xml => @result
   end
 
   def logout

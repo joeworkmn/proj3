@@ -22,6 +22,12 @@ class UserSuggestionsController < ApplicationController
   def divChairView
     division = cookies.signed[:user_div]
     @usersuggestions = UserSuggestion.find_all_by_division(division)
+    @usersuggestions << "json_user_sugg_by_div"
+    respond_to do |format|
+        format.html
+        format.xml {render :xml => @usersuggestions, :dasherize => false}
+        format.json {render :json => @usersuggestions}
+    end
   end
   
   def depView

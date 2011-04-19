@@ -10,6 +10,7 @@ Proj2::Application.routes.draw do
   match "pages/welcome" => "pages#welcome"
   match "pages/login" => "pages#login"
   match 'pages/loggedInID' => 'pages#loggedInID'
+  match 'pages/loggedIn' => 'pages#loggedIn'
   
   
   get "users/new"
@@ -40,8 +41,11 @@ Proj2::Application.routes.draw do
   match 'sugg_surveys/chooseSurvey' => 'sugg_surveys#chooseSurvey'
   match 'sugg_surveys/createSurvey' => 'sugg_surveys#createSurvey'
   match 'sugg_surveys/index' => 'sugg_surveys#index'  
-  match 'sugg_surveys/takeSurvey' => 'sugg_surveys#takeSurvey'
+  match 'sugg_surveys/takeSurvey/:survid' => 'sugg_surveys#takeSurvey'
+  match 'sugg_surveys/takeSurvey', :via => [:get,:post]
   match 'sugg_surveys/surveyResult' => 'sugg_surveys#surveyResult'
+  match 'sugg_surveys/test' => 'sugg_surveys#test'
+  match 'sugg_surveys/takeSurveyDisplay' => 'sugg_surveys#takeSurveyDisplay'
     
   # The priority is based upon order of creation:
   # first created -> highest priority.

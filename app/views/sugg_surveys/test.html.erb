@@ -1,0 +1,10 @@
+<%= link_to "link", :controller => "sugg_surveys", :action => "createSurvey", :xml_survey => "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<arrays type=\"array\">\n  <array type=\"array\">\n    <array>quest1</array>\n    <array>op1</array>\n    <array>op2</array>\n  </array>\n  <array type=\"array\">\n    <array>quest2</array>\n    <array>op3</array>\n  </array>\n</arrays>\n", :survey_title => "pauls title", :sugg_id => 7 %><br />
+
+<%= link_to "survresults", :action => "surveyResult", :results_array => "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<arrays type=\"array\">\n  <array type=\"array\">\n    <array>2</array>\n    <array>op1</array>\n  </array>\n  <array type=\"array\">\n    <array>3</array>\n    <array>op2</array>\n  </array>\n</arrays>\n", :initial_option => "strongly_agree", :survey_id => 2 %>
+
+<%= link_to "newlink", :action => "takeSurvey", :survid=> "3" %>
+
+<% if @newsurvey != nil %>
+  <%= @newsurvey %>
+    
+<% end %>
