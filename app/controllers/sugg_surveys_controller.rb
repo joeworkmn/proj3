@@ -21,6 +21,7 @@ class SuggSurveysController < ApplicationController
     end
   end
   
+  skip_before_filter :verify_authenticity_token
   def createSurvey
     xml_survey = params[:xml_survey]
     survey_array = Hash.from_xml(xml_survey)
@@ -123,14 +124,14 @@ class SuggSurveysController < ApplicationController
     @notice = params[:notice]    
   end
   
+  skip_before_filter :verify_authenticity_token
   def surveyResult
     rating = params[:initial_option]
     surveyid = params[:survey_id].to_i
     #userid = params[:choice][:userid]
     userid = cookies.signed[:user_id].to_i
-    xml = [:results_array]
+    xml = params[:results_array]
     results_array = Hash.from_xml(xml)
-    redirect_to :action => "test", :survey => temp
     conn = ActiveRecord::Base.connection
     #survid = conn.select_value("select id from surveys where id = " + surveyid.to_s +
     #  "")
@@ -143,12 +144,13 @@ class SuggSurveysController < ApplicationController
     #  redirect_to :action => "chooseSurvey", :notice => notice
     #else
     results_array["arrays"].each do |ra|
+      option_count = 0
       qid = ra[0].to_i
       #temp = ra
       #redirect_to :action => "test", :survey => temp
       option_count = conn.select_value("select times_chosen from options where questopid="+qid.to_s+" and option_text='"+ra[1]+"'").to_i
       option_count = option_count + 1
-      conn.select("update options set times_chosen="+option_count.to_s+" where questopid="+qid.to_s+" and option_text='"+ra[1]+"'")
+      conn.update("update options set times_chosen="+option_count.to_s+" where questopid="+qid.to_s+" and option_text='"+ra[1]+"'")
     end
     conn.update("update surveys set " + rating.to_s + " = " + count.to_s + " where
       id = " + surveyid.to_s + "")
