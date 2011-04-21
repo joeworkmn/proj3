@@ -46,6 +46,7 @@ Proj2::Application.routes.draw do
   match 'sugg_surveys/surveyResult' => 'sugg_surveys#surveyResult'
   match 'sugg_surveys/test' => 'sugg_surveys#test'
   match 'sugg_surveys/takeSurveyDisplay' => 'sugg_surveys#takeSurveyDisplay'
+  match 'sugg_surveys/chartData' => 'sugg_surveys#chartData'
     
   # The priority is based upon order of creation:
   # first created -> highest priority.

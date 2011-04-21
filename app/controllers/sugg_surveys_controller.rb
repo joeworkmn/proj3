@@ -109,7 +109,16 @@ class SuggSurveysController < ApplicationController
         format.html
         format.json {render :json => @survey}
     end
-    
+  end
+  
+  def chartData
+    survid = params[:survid].to_i
+    @chartData = TakeSurvey.find_all_by_surveyid(4)
+    @chartData << "json_chart_data"
+    respond_to do |format|
+      format.html
+      format.json {render :json => @chartData}
+    end
   end
   
   def takeSurveyDisplay
@@ -128,35 +137,25 @@ class SuggSurveysController < ApplicationController
   def surveyResult
     rating = params[:initial_option]
     surveyid = params[:survey_id].to_i
-    #userid = params[:choice][:userid]
     userid = cookies.signed[:user_id].to_i
     xml = params[:results_array]
     results_array = Hash.from_xml(xml)
     conn = ActiveRecord::Base.connection
-    #survid = conn.select_value("select id from surveys where id = " + surveyid.to_s +
-    #  "")
     count = conn.select_value("select " + rating.to_s + " from surveys where
       id = " + surveyid.to_s + "").to_i
     count = count + 1
     result = conn.select_value("select insertUserSurvey(" + userid.to_s + "," + surveyid.to_s + ")").to_i
-    #if result == 1
-    #  notice = "You have already taken that survey"
-    #  redirect_to :action => "chooseSurvey", :notice => notice
-    #else
-    results_array["arrays"].each do |ra|
-      option_count = 0
-      qid = ra[0].to_i
-      #temp = ra
-      #redirect_to :action => "test", :survey => temp
-      option_count = conn.select_value("select times_chosen from options where questopid="+qid.to_s+" and option_text='"+ra[1]+"'").to_i
-      option_count = option_count + 1
-      conn.update("update options set times_chosen="+option_count.to_s+" where questopid="+qid.to_s+" and option_text='"+ra[1]+"'")
-    end
     conn.update("update surveys set " + rating.to_s + " = " + count.to_s + " where
       id = " + surveyid.to_s + "")
     conn.update("update surveys set rating = ((strongly_agree*1.5)+agree)-((strongly_disagree*1.5)+disagree)
       where id = " + surveyid.to_s + "")
-    redirect_to :action => "index"
+    results_array["arrays"].each do |ra|
+      option_count = 0
+      qid = ra[0].to_i
+      option_count = conn.select_value("select times_chosen from options where questopid="+qid.to_s+" and option_text='"+ra[1]+"'").to_i
+      option_count = option_count + 1
+      conn.update("update options set times_chosen="+option_count.to_s+" where questopid="+qid.to_s+" and option_text='"+ra[1]+"'")
+    end
   end
   
   def test
