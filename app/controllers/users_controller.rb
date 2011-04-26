@@ -1,6 +1,13 @@
 class UsersController < ApplicationController
   def index
-    @users = User.all
+    view = params[:viewBy]
+    if view == "div"
+      @users = User.find_all_by_division(cookies.signed[:user_div])
+    elsif view == "dep"
+      @users = User.find_all_by_department(cookies.signed[:user_dep])
+    else
+      @users = User.all
+    end
     @users << "#display_users_celltable"
     respond_to do |format|
         format.html
@@ -89,5 +96,5 @@ class UsersController < ApplicationController
     #redirect_to "http://localhost/chart.html", :fname_lname => :combine
     redirect_to :controller => "users", :action => "resetPassResult", :first_name => myarray
   end
-  
+ 
 end

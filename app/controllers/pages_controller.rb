@@ -24,10 +24,13 @@ class PagesController < ApplicationController
       cookies.signed[:authenticated] = true
       if cookies.signed[:user_div] == "admin" && cookies.signed[:user_dep] == "admin"
         cookies.signed[:admin] = true
+        loginResult = "user_type_is_admin"
       elsif cookies.signed[:user_div] == cookies.signed[:user_dep]
         cookies.signed[:divChair] = true
+        loginResult = "user_type_is_divChair"
+      else
+        loginResult = "user_type_is_normal"
       end
-      loginResult = "logged_in_yes"
     else
       loginResult = "logged_in_no"
     end

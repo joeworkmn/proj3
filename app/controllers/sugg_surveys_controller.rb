@@ -21,6 +21,17 @@ class SuggSurveysController < ApplicationController
     end
   end
   
+  def allSurveys
+    division = cookies.signed[:user_div]
+    @surveysAll = SuggSurvey.find_all_by_division(division)
+    @surveysAll << "json_all_surveys"
+    respond_to do |format|
+        format.html
+        format.xml {render :xml => @surveysAll, :dasherize => false}
+        format.json {render :json => @surveysAll}
+    end
+  end
+  
   skip_before_filter :verify_authenticity_token
   def createSurvey
     xml_survey = params[:xml_survey]
@@ -112,8 +123,8 @@ class SuggSurveysController < ApplicationController
   end
   
   def chartData
-    survid = params[:survid].to_i
-    @chartData = TakeSurvey.find_all_by_surveyid(4)
+    survid = params[:surveyid].to_i
+    @chartData = TakeSurvey.find_all_by_surveyid(survid)
     @chartData << "json_chart_data"
     respond_to do |format|
       format.html

@@ -25,6 +25,7 @@ Proj2::Application.routes.draw do
   match 'users/updatePass' => 'users#updatePass'
   match 'users/resetPassResult' => 'users#resetPassResult'
   match 'users/chart' => 'users#chart'
+  match 'users/index/:viewBy' => 'users#index'
   
   
   match 'suggestions/update' => 'suggestions#update'
@@ -37,6 +38,11 @@ Proj2::Application.routes.draw do
   match 'user_suggestions/depView/' => 'user_suggestions#depView'
   match 'user_suggestions/divSuggestions' => 'user_suggestions#divSuggestions'
   match 'user_suggestions/chooseSuggSurvey' => 'user_suggestions#chooseSuggSurvey'
+  match 'user_suggestions/chooseSuggestion/:editOwnOrDiv' => 'user_suggestions#chooseSuggestion'
+  match 'user_suggestions/allSuggestions' => 'user_suggestions#allSuggestions'
+  match 'user_suggestions/test_pdf' => 'user_suggestions#test_pdf'
+  match 'user_suggestions/pdfTest' => 'user_suggestions#pdfTest'
+  match 'user_suggestions/numSuggsByDiv' => 'user_suggestions#numSuggsByDiv'
   
   match 'sugg_surveys/chooseSurvey' => 'sugg_surveys#chooseSurvey'
   match 'sugg_surveys/createSurvey' => 'sugg_surveys#createSurvey'
@@ -47,7 +53,9 @@ Proj2::Application.routes.draw do
   match 'sugg_surveys/test' => 'sugg_surveys#test'
   match 'sugg_surveys/takeSurveyDisplay' => 'sugg_surveys#takeSurveyDisplay'
   match 'sugg_surveys/chartData' => 'sugg_surveys#chartData'
-    
+  match 'sugg_surveys/chartData/:surveyid' => 'sugg_surveys#chartData'
+  match 'sugg_surveys/allSurveys' => 'sugg_surveys#allSurveys'
+       
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
