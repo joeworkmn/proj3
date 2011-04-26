@@ -33,11 +33,18 @@ h1 {
   margin: 15px 6px 6px;
 }
 
-/**
+
 .newUserBoxPanel {
   padding: 3mm 3mm 3mm 3mm;
   border: 1px;
-  border-color: #00FFFF;
+  border-color: #e0e0e0;
   border-style: solid
 }
-*/
+
+
+.usersBoxPanel, .suggButtonBoxPanel, .surveyButtonBoxPanel, .adminButtonBoxPanel {
+  padding: 1mm 1mm 1mm 1mm;
+  border: 1px;
+  border-color: #808080 ;
+  border-style: solid
+}
