@@ -22,7 +22,8 @@ class UserSuggestionsController < ApplicationController
  
   def numSuggsByDiv
     @usersuggestions = UserSuggestion.order("division ASC")
-      @usersuggestions << "json_num_of_suggs_by_div"
+    @usersuggestions << "json_num_of_suggs_by_div"
+    
       respond_to do |format|
         format.html
         format.xml {render :xml => @usersuggestions, :dasherize => false}
@@ -30,9 +31,11 @@ class UserSuggestionsController < ApplicationController
       end  
   end
   
+  #app/controllers/user_suggestions_controller.rb
   def  allSuggestions
     @usersuggestions = UserSuggestion.find_all_by_division(cookies.signed[:user_div])
     @usersuggestions << "json_all_suggs_for_celltable"
+    #@usersuggestions = UserSuggestion.all
     respond_to do |format|
         format.html
         format.xml {render :xml => @usersuggestions, :dasherize => false}
